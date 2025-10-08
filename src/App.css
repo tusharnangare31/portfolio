@@ -1,0 +1,139 @@
+/* app.css */
+
+/* --- Reset / Base styles --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Inter', sans-serif;
+  background-color: #f9fafb; /* light gray background */
+  color: #111827; /* dark text */
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+/* --- Container --- */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* --- Buttons --- */
+button {
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+button.primary {
+  background-color: #4f46e5; /* Indigo */
+  color: white;
+}
+
+button.primary:hover {
+  background-color: #4338ca;
+}
+
+button.secondary {
+  background-color: #e5e7eb; /* Gray-200 */
+  color: #111827;
+}
+
+button.secondary:hover {
+  background-color: #d1d5db;
+}
+
+/* --- Cards --- */
+.card {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  padding: 1.5rem;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+/* --- Inputs --- */
+input, textarea {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+input:focus, textarea:focus {
+  border-color: #4f46e5;
+}
+
+/* --- Headings --- */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+/* --- Paragraph --- */
+p {
+  margin-bottom: 1rem;
+  color: #374151; /* gray-700 */
+}
+
+/* --- Utility Classes --- */
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.gap-2 {
+  gap: 0.5rem;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+/* --- Animations --- */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
