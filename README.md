@@ -1,16 +1,101 @@
-# React + Vite
+# Tushar Nangare Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![EmailJS](https://img.shields.io/badge/EmailJS-FF4081?style=for-the-badge&logo=email&logoColor=white)
+![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-181717?style=for-the-badge&logo=github&logoColor=white)
 
-Currently, two official plugins are available:
+**A modern, responsive portfolio website showcasing my skills, projects, and achievements as a Final-Year IT Student.**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Table of Contents
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- [About](#about)  
+- [Features](#features)  
+- [Technologies Used](#technologies-used)  
+- [Screenshots](#screenshots)  
+- [Installation](#installation)  
+- [Usage](#usage)  
+- [Contact](#contact)  
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## About
+
+This portfolio demonstrates my expertise in:
+
+- **Full-Stack Development**  
+- **Python, Java, JavaScript**  
+- **Django & MERN Stack**  
+- **Machine Learning**  
+- **DevOps & Cloud Basics**
+
+It includes:
+
+- Animated Hero Section with Typewriter effect  
+- Skills and Certifications showcase  
+- Experience and Education Timeline  
+- Interactive Contact Form connected to EmailJS  
+- Responsive Navbar and Mobile-friendly design  
+- Lottie animations for a modern UI feel  
+
+---
+
+## Features
+
+- **Hero Section:** Animated Typewriter phrases and Lottie animation  
+- **About Section:** A concise introduction and career highlights  
+- **Skills Section:** Visual skill cards with proficiency  
+- **Experience & Certifications:** Timeline with hover effects and clickable links  
+- **Projects Section:** Display of personal and academic projects  
+- **Contact Form:** Fully functional with EmailJS integration  
+- **Social Links:** LinkedIn, GitHub, Instagram, Twitter, Email  
+
+---
+
+## Technologies Used
+
+- **Frontend:** React, TailwindCSS, Framer Motion, React Simple Typewriter, React Icons, Lottie  
+- **Backend/Email Integration:** EmailJS  
+- **Hosting/Deployment:** [Your hosting platform, e.g., Netlify, Vercel, GitHub Pages]  
+
+---
+
+## Screenshots
+
+### Hero Section
+![Hero Section Screenshot](./public/screenShots/hero.png)  
+
+### Skills & Experience Section
+![Skills & Experience Screenshot](./public/screenShots/experience.png)  
+
+### Contact Form
+![Contact Form Screenshot](./public//screenShots/contact.png)  
+
+ 
+
+---
+
+## Installation
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/your-username/portfolio.git
+```
+
+2. Navigate to the project directory:
+```bash
+cd portfolio
+```
+
+3. Install dependencies:
+```bash
+npm install
+```
+
+4. Start the development server:
+```bash
+npm run dev
+```

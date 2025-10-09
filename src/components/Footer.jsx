@@ -12,7 +12,7 @@ export default function Footer() {
 
         <div className="flex space-x-6">
           <a
-            href="https://www.linkedin.com/"
+            href="https://www.linkedin.com/in/tusharnangare31/"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 hover:text-white transition-colors duration-300"
@@ -20,7 +20,7 @@ export default function Footer() {
             <FaLinkedin /> LinkedIn
           </a>
           <a
-            href="https://github.com/"
+            href="https://github.com/tusharnangare31"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 hover:text-white transition-colors duration-300"

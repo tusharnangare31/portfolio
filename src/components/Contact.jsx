@@ -75,7 +75,7 @@ export default function Contact() {
             <p className="text-gray-700 text-lg">
               <strong>LinkedIn:</strong>{" "}
               <a
-                href="https://www.linkedin.com/"
+                href="https://www.linkedin.com/in/tusharnangare31/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-indigo-600 hover:underline"
@@ -86,7 +86,7 @@ export default function Contact() {
             <p className="text-gray-700 text-lg">
               <strong>GitHub:</strong>{" "}
               <a
-                href="https://github.com/"
+                href="https://github.com/tusharnangare31"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-indigo-600 hover:underline"

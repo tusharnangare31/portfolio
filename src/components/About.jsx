@@ -83,7 +83,7 @@ export default function About() {
             </div>
             <div>
               <p className="font-semibold">Email:</p>
-              <p>tusharnangare@example.com</p>
+              <p>tusharnangare311003@gmail.com</p>
             </div>
             <div>
               <p className="font-semibold">Location:</p>
