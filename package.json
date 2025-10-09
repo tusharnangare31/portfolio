@@ -12,6 +12,7 @@
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@tailwindcss/vite": "^4.1.14",
+    "dotenv": "^17.2.3",
     "emailjs-com": "^3.2.0",
     "framer-motion": "^12.23.22",
     "lottie-react": "^2.4.1",
