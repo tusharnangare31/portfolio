@@ -3,7 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import cisco from "../assets/certificate/cisco.png";
 import aicte from "../assets/certificate/aicte.jpeg"
-import infosys from "../assets/certificate/infosys.png"
+// import infosys from "../assets/certificate/infosys.png"
 import google from "../assets/certificate/google.png"
 
 
@@ -11,7 +11,7 @@ const experiences = [
   {
     title: "Infosys Springboard AI/DS Certificate",
     year: "2025",
-    img: infosys,
+    img: "https://www.samco.in/knowledge-center/wp-content/uploads/2024/12/Infosys-Share-Price.png",
     link: "#",
   },
   {
