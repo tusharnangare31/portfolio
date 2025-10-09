@@ -1,74 +1,151 @@
 // src/components/Contact.jsx
-import React from "react";
+import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
+import emailjs from "@emailjs/browser";
 
 export default function Contact() {
+  const form = useRef();
+  const [isSending, setIsSending] = useState(false);
+  const [status, setStatus] = useState("");
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    setIsSending(true);
+    setStatus("");
+
+    emailjs
+      .sendForm(
+        "service_6uioqls", // 🔹 Replace with your Service ID from EmailJS
+        "template_dw8n9eq", // 🔹 Replace with your Template ID from EmailJS
+        form.current,
+        "wnE_jLbRGpM98YUZp" // ✅ Use only your Public Key (safe for frontend)
+      )
+      .then(
+        () => {
+          setStatus("✅ Message sent successfully!");
+          setIsSending(false);
+          form.current.reset();
+        },
+        (error) => {
+          console.error("Error:", error.text);
+          setStatus("❌ Failed to send message. Try again later.");
+          setIsSending(false);
+        }
+      );
+  };
+
   return (
-    <section id="contact" className="py-20 bg-white px-6">
+    <section id="contact" className="py-20 bg-gray-50 px-6">
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-3xl font-serif font-bold text-gray-900 mb-10">
+        <motion.h2
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-5xl font-extrabold mb-12 text-gray-900"
+        >
           Contact Me
-        </h2>
+        </motion.h2>
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
           className="flex flex-col md:flex-row gap-10 justify-center"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
         >
           {/* Contact Info */}
-          <div className="md:w-1/2 space-y-4 text-left">
-            <p className="text-gray-700">
-              <strong>Email:</strong> tusharnangare311003@gmail.com
+          <motion.div
+            className="md:w-1/2 space-y-6 text-left"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <p className="text-gray-700 text-lg">
+              <strong>Email:</strong>{" "}
+              <a
+                href="mailto:tusharnangare311003@gmail.com"
+                className="text-indigo-600 hover:underline"
+              >
+                tusharnangare311003@gmail.com
+              </a>
             </p>
-            <p className="text-gray-700">
+            <p className="text-gray-700 text-lg">
               <strong>Phone:</strong> +91-7499404445
             </p>
-            <p className="text-gray-700">
+            <p className="text-gray-700 text-lg">
               <strong>LinkedIn:</strong>{" "}
               <a
                 href="https://www.linkedin.com/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-indigo-600 hover:underline"
               >
                 LinkedIn Profile
               </a>
             </p>
-            <p className="text-gray-700">
+            <p className="text-gray-700 text-lg">
               <strong>GitHub:</strong>{" "}
               <a
                 href="https://github.com/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-indigo-600 hover:underline"
               >
                 GitHub Profile
               </a>
             </p>
-          </div>
+          </motion.div>
 
           {/* Contact Form */}
-          <div className="md:w-1/2">
-            <form className="flex flex-col gap-4">
+          <motion.div
+            className="md:w-1/2 bg-white p-6 md:p-8 rounded-2xl shadow-lg"
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <form ref={form} onSubmit={sendEmail} className="flex flex-col gap-4">
               <input
                 type="text"
+                name="user_name"
                 placeholder="Your Name"
-                className="p-3 border border-gray-300 rounded-lg"
+                required
+                className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
               />
               <input
                 type="email"
+                name="user_email"
                 placeholder="Your Email"
-                className="p-3 border border-gray-300 rounded-lg"
+                required
+                className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+              />
+              <input
+                type="text"
+                name="title"
+                placeholder="Subject"
+                className="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
               />
               <textarea
+                name="message"
                 placeholder="Your Message"
-                className="p-3 border border-gray-300 rounded-lg h-32"
+                required
+                className="p-3 border border-gray-300 rounded-lg h-32 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
               />
               <button
                 type="submit"
-                className="bg-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-indigo-700"
+                disabled={isSending}
+                className={`${
+                  isSending
+                    ? "bg-indigo-400 cursor-not-allowed"
+                    : "bg-indigo-600 hover:bg-indigo-700"
+                } text-white px-6 py-3 rounded-lg font-medium transition-all duration-300`}
               >
-                Send Message
+                {isSending ? "Sending..." : "Send Message"}
               </button>
             </form>
-          </div>
+            {status && (
+              <p className="mt-4 text-sm font-medium text-gray-700">{status}</p>
+            )}
+          </motion.div>
         </motion.div>
       </div>
     </section>

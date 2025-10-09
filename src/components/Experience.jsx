@@ -1,61 +1,94 @@
 // src/components/Experience.jsx
 import React from "react";
 import { motion } from "framer-motion";
+import cisco from "../assets/certificate/cisco.png";
+import aicte from "../assets/certificate/aicte.jpeg"
+import infosys from "../assets/certificate/infosys.png"
+import google from "../assets/certificate/google.png"
 
-// Sample experience/certifications data (replace with experienceData.js later)
+
 const experiences = [
   {
-    title: "Infosys Springboard AI/DS Course Certificate",
+    title: "Infosys Springboard AI/DS Certificate",
     year: "2025",
-    img: "https://picsum.photos/100/100?random=1",
+    img: infosys,
+    link: "#",
   },
   {
     title: "Python Essentials I – Cisco",
     year: "2024",
-    img: "https://picsum.photos/100/100?random=2",
+    img: cisco,
+    link: "/certificates/PythonEssentials1.pdf",
   },
   {
-    title: "Python Full-Stack Development – AICTE Internship",
+    title: "Full-Stack Python Development – AICTE",
     year: "2024",
-    img: "https://picsum.photos/100/100?random=3",
+    img: aicte,
+    link: "/certificates/aicte.pdf",
   },
   {
-    title: "AI-ML Virtual Internship – Google Developers",
-    year: "2025",
-    img: "https://picsum.photos/100/100?random=4",
+    title: "AI-ML Virtual Internship – Google",
+    year: "2024",
+    img: google,
+    link: "/certificates/google.pdf",
   },
 ];
 
 export default function Experience() {
   return (
-    <section id="experience" className="py-20 bg-white px-6">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-3xl font-serif font-bold text-gray-900 mb-10 text-center">
+    <section
+      id="experience"
+      className="py-14 px-5 bg-gradient-to-b from-gray-50 to-white relative"
+    >
+      <div className="max-w-5xl mx-auto text-center">
+        <motion.h2
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-3xl md:text-4xl font-bold text-gray-900 mb-10"
+        >
           Certifications & Achievements
-        </h2>
+        </motion.h2>
 
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.15 } },
+          }}
         >
           {experiences.map((exp, idx) => (
-            <motion.div
+            <motion.a
               key={idx}
-              className="flex flex-col items-center bg-gray-50 p-6 rounded-xl shadow-md"
-              whileHover={{ scale: 1.05 }}
+              href={exp.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              whileHover={{
+                scale: 1.05,
+                y: -4,
+                boxShadow: "0 6px 18px rgba(0,0,0,0.12)",
+              }}
+              transition={{ duration: 0.35 }}
+              className="bg-white border border-gray-100 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden flex flex-col items-center p-3 sm:p-4"
             >
               <img
                 src={exp.img}
                 alt={exp.title}
-                className="w-20 h-20 object-contain mb-4"
+                className="w-16 h-16 sm:w-20 sm:h-20 rounded-md object-cover mb-2"
               />
-              <h3 className="text-lg font-semibold text-gray-800 text-center">
+              <h3 className="text-xs sm:text-sm font-semibold text-gray-800 text-center leading-tight mb-1">
                 {exp.title}
               </h3>
-              <p className="text-gray-500 mt-1">{exp.year}</p>
-            </motion.div>
+              <p className="text-[10px] sm:text-xs text-teal-700 bg-teal-50 px-2 py-0.5 rounded-full">
+                {exp.year}
+              </p>
+            </motion.a>
           ))}
         </motion.div>
       </div>

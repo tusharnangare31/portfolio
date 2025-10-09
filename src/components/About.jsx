@@ -98,7 +98,7 @@ export default function About() {
           {/* Buttons */}
           <div className="flex flex-wrap gap-4">
             <a
-              href="/TusharNangare_Resume.pdf"
+              href="/resume.pdf"
               download="TusharNangare_Resume.pdf"
               className="px-6 py-3 rounded-lg bg-gray-800 hover:bg-gray-900 text-white font-semibold transition transform hover:scale-105 shadow-md"
             >

@@ -70,9 +70,9 @@ export default function Navbar() {
         {/* Logo */}
         <a
           href="#hero"
-          className="text-3xl font-serif font-bold text-indigo-600 transition-colors"
+          className="text-3xl font-serif font-bold text-gray-800 transition-colors"
         >
-          Tushar Nangare
+          &lt;Tushar/Nangar&gt;
         </a>
 
         {/* Desktop Menu */}

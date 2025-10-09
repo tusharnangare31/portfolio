@@ -1,29 +1,37 @@
-import React, { useState, useEffect } from "react";
+// src/components/Hero.jsx
+import React, { useEffect } from "react";
 import { Typewriter } from "react-simple-typewriter";
 import Tilt from "react-parallax-tilt";
 import Lottie from "lottie-react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import {
+  FaLinkedin,
+  FaGithub,
+  FaInstagram,
+  FaTwitter,
+  FaEnvelope,
+} from "react-icons/fa";
+import { SiLeetcode } from "react-icons/si"; // LeetCode icon
 
 import heroAnimation from "../assets/hero.json";
 
 const ANIMATION_PHRASES = [
   "Final-Year IT Student",
-  "Aspiring Software Engineer",
   "Full-Stack Developer",
+  "Python, Java, JavaScript",
+  "Django & MERN Stack",
+  "Machine Learning Enthusiast",
+  "DevOps & Cloud Explorer",
 ];
 
 export default function Hero() {
   const controls = useAnimation();
   const { ref, inView } = useInView({ threshold: 0.3 });
 
-  // Animate forward or reverse based on inView
   useEffect(() => {
-    if (inView) {
-      controls.start("visible");
-    } else {
-      controls.start("hidden");
-    }
+    if (inView) controls.start("visible");
+    else controls.start("hidden");
   }, [controls, inView]);
 
   const textVariants = {
@@ -35,6 +43,15 @@ export default function Hero() {
     hidden: { opacity: 0, y: 50, scale: 0.9 },
     visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 1, ease: "easeOut" } },
   };
+
+  const socialLinks = [
+    { icon: <FaLinkedin />, link: "https://www.linkedin.com/in/tusharnangare31/", color: "#0A66C2" },
+    { icon: <FaGithub />, link: "https://github.com/tusharnangare31", color: "#171515" },
+    // { icon: <FaInstagram />, link: "https://instagram.com/", color: "#E1306C" },
+    // { icon: <FaTwitter />, link: "https://twitter.com/", color: "#1DA1F2" },
+    { icon: <FaEnvelope />, link: "mailto:tusharnangare311003@gmail.com", color: "#D44638" },
+    { icon: <SiLeetcode />, link: "https://leetcode.com/u/tusharnangare311003/", color: "#FFA116" }, // LeetCode
+  ];
 
   return (
     <section
@@ -77,6 +94,24 @@ export default function Hero() {
             Learn More About Me
           </a>
         </div>
+
+        {/* Social Media Icons */}
+        <div className="mt-6 flex gap-4 justify-center md:justify-start flex-wrap">
+          {socialLinks.map((item, idx) => (
+            <a
+              key={idx}
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center rounded-full p-3 sm:p-4 text-xl sm:text-2xl shadow-lg hover:scale-110 transition-transform"
+              style={{ backgroundColor: item.color, color: "#fff" }}
+            >
+              {item.icon}
+            </a>
+          ))}
+        </div>
+
+        
       </motion.div>
 
       {/* Lottie Animation Section */}
