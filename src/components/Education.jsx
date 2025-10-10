@@ -12,7 +12,7 @@ const education = [
   {
     college: "PES Modern College of Engineering",
     degree: "B.E. in Information Technology",
-    duration: "2022 – 2026 (Expected)",
+    duration: "2022 – 2026 (OnGoing)",
     resultValue: "8.33",
     resultLabel: "CGPA",
     imgUrl: modernImg,
@@ -51,7 +51,7 @@ const itemVariants = {
 
 export default function Education() {
   return (
-    <section id="education" className="py-20 bg-gray-50 px-6">
+    <section id="education" className="py-20 bg-white px-6">
       <div className="max-w-6xl mx-auto">
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
@@ -82,7 +82,7 @@ export default function Education() {
                   boxShadow: `0px 15px 35px -10px rgba(0,0,0,0.1)`,
                 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="bg-white rounded-2xl shadow-xl transition-all duration-300 cursor-pointer flex flex-col md:flex-row overflow-hidden h-[15rem]" // <-- fixed height
+                className="bg-gray-50 rounded-2xl shadow-xl transition-all duration-300 cursor-pointer flex flex-col md:flex-row overflow-hidden h-[15rem]" // <-- fixed height
               >
                 {/* Image Section */}
                 <div className="md:w-1/3 w-full h-full flex-shrink-0 relative">

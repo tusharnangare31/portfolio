@@ -82,7 +82,7 @@ It includes:
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/portfolio.git
+git clone https://github.com/tusharnangare31/portfolio.git
 ```
 
 2. Navigate to the project directory:

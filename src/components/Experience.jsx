@@ -2,7 +2,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import cisco from "../assets/certificate/cisco.png";
+import cisco2 from "../assets/certificate/cisco2.png";
 import aicte from "../assets/certificate/aicte.jpeg"
+import oracle from "../assets/certificate/oracle.png"
+import scaler from "../assets/certificate/scaler.webp"
 // import infosys from "../assets/certificate/infosys.png"
 import google from "../assets/certificate/google.png"
 
@@ -15,10 +18,34 @@ const experiences = [
     link: "#",
   },
   {
+    title: "Generative AI Professional – Oracle",
+    year: "2025",
+    img: oracle,
+    link: "/certificates/oracle.pdf",
+  },
+  {
+    title: "Data Science Fundamentals – Scaler Topic",
+    year: "2025",
+    img: scaler,
+    link: "/certificates/scaler.png",
+  },
+  {
     title: "Python Essentials I – Cisco",
-    year: "2024",
+    year: "2025",
     img: cisco,
     link: "/certificates/PythonEssentials1.pdf",
+  },
+  {
+    title: "Python Essentials II – Cisco",
+    year: "2025",
+    img: cisco2,
+    link: "/certificates/PythonEssentials2.pdf",
+  },
+  {
+    title: "AI-ML Virtual Internship – Google",
+    year: "2025",
+    img: google,
+    link: "/certificates/google.pdf",
   },
   {
     title: "Full-Stack Python Development – AICTE",
@@ -26,12 +53,7 @@ const experiences = [
     img: aicte,
     link: "/certificates/aicte.pdf",
   },
-  {
-    title: "AI-ML Virtual Internship – Google",
-    year: "2024",
-    img: google,
-    link: "/certificates/google.pdf",
-  },
+  
 ];
 
 export default function Experience() {

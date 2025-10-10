@@ -8,9 +8,9 @@ const projects = [
     tech: ["React", "TailwindCSS", "Framer Motion"],
     description:
       "My personal portfolio showcasing projects, skills, and work experience with interactive animations and responsive design.",
-    img: "https://picsum.photos/400/250?random=5",
-    sourceLink: "https://github.com/yourusername/portfolio",
-    liveLink: "https://yourusername.github.io/portfolio",
+    img: "/screenShots/hero.png",
+    sourceLink: "https://github.com/tusharnangare31/portfolio",
+    liveLink: "https://tusharnangare.netlify.app/",
   },
   {
     title: "Diabetes Prediction Application",
