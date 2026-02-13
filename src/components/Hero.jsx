@@ -53,12 +53,12 @@ export default function Hero() {
     <section
       id="hero"
       ref={ref}
-      className="relative min-h-screen flex flex-col md:flex-row items-center justify-center px-6 md:px-16 lg:px-32 py-24 md:py-20 overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50/30 to-gray-100"
+      className="relative min-h-screen flex flex-col md:flex-row items-center justify-center px-6 md:px-16 lg:px-32 py-24 md:py-20 overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50/30 to-gray-100 dark:from-gray-900 dark:via-blue-950/10 dark:to-gray-900 transition-colors duration-300"
     >
       <ParticleNetwork
         color="#3b82f6"
         mousePointColor="#f59e0b"
-        particleCount={100}
+        particleCount={80}
         maxDistance={120}
         particleSize={1.5}
         speed={0.4}
@@ -67,8 +67,8 @@ export default function Hero() {
       />
 
       {/* Decorative orbs */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-blue-400/20 to-indigo-500/20 rounded-full blur-3xl animate-pulse" />
-      <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-tr from-indigo-400/20 to-purple-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
+      <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-blue-400/20 dark:from-blue-600/10 to-indigo-500/20 dark:to-indigo-700/10 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-tr from-indigo-400/20 dark:from-indigo-600/10 to-purple-500/20 dark:to-purple-700/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
 
       <motion.div
         className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left z-10 md:pr-12"
@@ -81,7 +81,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-blue-200 px-4 py-2 rounded-full text-sm font-medium text-blue-700 shadow-sm mb-6"
+          className="inline-flex items-center gap-2 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm border border-blue-200 dark:border-blue-700 px-4 py-2 rounded-full text-sm font-medium text-blue-700 dark:text-blue-300 shadow-sm mb-6"
         >
           <span className="relative flex h-2 w-2">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
@@ -91,14 +91,14 @@ export default function Hero() {
         </motion.div>
 
         <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-2">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 dark:from-blue-400 dark:via-indigo-400 dark:to-blue-500">
             Tushar Nangare
           </span>
         </h1>
 
         <div className="mt-6 mb-6 h-16 flex flex-col md:flex-row items-center justify-center md:justify-start gap-2">
-          <span className="text-lg md:text-xl text-gray-600 font-medium">I am a</span>
-          <span className="text-xl md:text-2xl text-blue-600 font-bold min-h-[2rem] flex items-center">
+          <span className="text-lg md:text-xl text-gray-600 dark:text-gray-400 font-medium">I am a</span>
+          <span className="text-xl md:text-2xl text-blue-600 dark:text-blue-400 font-bold min-h-[2rem] flex items-center">
             <Typewriter
               words={ANIMATION_PHRASES}
               loop={0}
@@ -111,10 +111,10 @@ export default function Hero() {
           </span>
         </div>
 
-        <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed max-w-lg md:max-w-xl mb-8">
+        <p className="text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-lg md:max-w-xl mb-8">
           A passionate IT student and developer exploring modern web and mobile technologies 
-          to build <span className="font-semibold text-gray-900">intuitive</span> and 
-          <span className="font-semibold text-gray-900"> scalable</span> solutions that make a difference.
+          to build <span className="font-semibold text-gray-900 dark:text-gray-100">intuitive</span> and 
+          <span className="font-semibold text-gray-900 dark:text-gray-100"> scalable</span> solutions that make a difference.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-10">
@@ -131,7 +131,7 @@ export default function Hero() {
           
           <a
             href="#contact"
-            className="px-8 py-4 rounded-xl bg-white border-2 border-gray-300 text-gray-800 font-semibold hover:border-blue-500 hover:text-blue-600 hover:shadow-lg transition-all duration-300"
+            className="px-8 py-4 rounded-xl bg-white dark:bg-gray-800 border-2 border-gray-300 dark:border-gray-600 text-gray-800 dark:text-gray-200 font-semibold hover:border-blue-500 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 hover:shadow-lg transition-all duration-300"
           >
             Get In Touch
           </a>
@@ -147,11 +147,11 @@ export default function Hero() {
               aria-label={item.label}
               whileHover={{ scale: 1.1, y: -4 }}
               whileTap={{ scale: 0.95 }}
-              className="group relative flex items-center justify-center rounded-xl p-4 text-2xl shadow-md hover:shadow-xl transition-all duration-300 bg-white border border-gray-100"
+              className="group relative flex items-center justify-center rounded-xl p-4 text-2xl shadow-md hover:shadow-xl transition-all duration-300 bg-white dark:bg-gray-800 border border-gray-100 dark:border-gray-700"
               style={{ color: item.color }}
             >
               {item.icon}
-              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-gray-900 dark:bg-gray-700 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
                 {item.label}
               </span>
             </motion.a>
@@ -163,22 +163,22 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5, duration: 1 }}
-          className="hidden md:flex absolute bottom-10 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-gray-500 hover:text-blue-600 transition-colors cursor-pointer group"
+          className="hidden md:flex absolute bottom-10 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-gray-500 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors cursor-pointer group"
           aria-label="Scroll to about section"
         >
           <span className="text-sm font-medium">Scroll to explore</span>
-          <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex items-start justify-center p-1 group-hover:border-blue-600 transition-colors">
+          <div className="w-6 h-10 border-2 border-gray-400 dark:border-gray-600 rounded-full flex items-start justify-center p-1 group-hover:border-blue-600 dark:group-hover:border-blue-400 transition-colors">
             <motion.div
               animate={{ y: [0, 12, 0] }}
               transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-1.5 h-1.5 bg-gray-400 rounded-full group-hover:bg-blue-600"
+              className="w-1.5 h-1.5 bg-gray-400 dark:bg-gray-600 rounded-full group-hover:bg-blue-600 dark:group-hover:bg-blue-400"
             />
           </div>
         </motion.button>
       </motion.div>
 
       <motion.div
-        className="w-full md:w-1/2 mt-12 md:mt-0 flex justify-center md:justify-end z-10"
+        className="w-full md:w-1/2 flex justify-center md:justify-end z-10"
         initial="hidden"
         animate={controls}
         variants={animationVariants}

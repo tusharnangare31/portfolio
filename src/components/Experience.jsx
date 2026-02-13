@@ -90,7 +90,7 @@ export default function Experience() {
   return (
     <section
       id="experience"
-      className="py-20 px-6 bg-gradient-to-br from-gray-50 via-blue-50/30 to-gray-100 relative overflow-hidden"
+      className="py-24 px-6 bg-gradient-to-b from-white via-blue-50/20 to-white dark:from-gray-900 dark:via-blue-950/10 dark:to-gray-900 relative overflow-hidden transition-colors duration-300"
     >
       {/* Background Decoration */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-200/20 to-indigo-200/20 rounded-full blur-3xl -z-0" />
@@ -105,14 +105,14 @@ export default function Experience() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <div className="inline-flex items-center gap-2 bg-indigo-100 text-indigo-700 px-4 py-2 rounded-full text-sm font-semibold mb-4">
+          <div className="inline-flex items-center gap-2 bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 px-4 py-2 rounded-full text-sm font-semibold mb-4">
             <FaAward className="w-4 h-4" />
             <span>Professional Growth</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-4">
-            Certifications & Achievements
+          <h2 className="text-4xl md:text-5xl font-extrabold mb-4">
+            <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 dark:from-blue-400 dark:via-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">Certifications & Achievements</span>
           </h2>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Continuous learning and professional development through industry-recognized certifications
           </p>
         </motion.div>
@@ -137,7 +137,7 @@ export default function Experience() {
                 scale: 1.03,
                 transition: { duration: 0.3, ease: "easeOut" },
               }}
-              className="group relative bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100"
+              className="group relative bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden border border-gray-100 dark:border-gray-700"
             >
               {/* Gradient Overlay on Hover */}
               <div className={`absolute inset-0 bg-gradient-to-br ${exp.color} opacity-0 group-hover:opacity-5 transition-opacity duration-300`} />
@@ -146,7 +146,7 @@ export default function Experience() {
               <div className="relative p-6 flex flex-col items-center text-center h-full">
                 {/* Logo Container */}
                 <div className="relative mb-4">
-                  <div className="w-24 h-24 rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 p-3 shadow-sm group-hover:shadow-md transition-shadow duration-300 flex items-center justify-center">
+                  <div className="w-24 h-24 rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-700 dark:to-gray-800 p-3 shadow-sm group-hover:shadow-md transition-shadow duration-300 flex items-center justify-center">
                     <img
                       src={exp.img}
                       alt={exp.title}
@@ -162,7 +162,7 @@ export default function Experience() {
                 </div>
 
                 {/* Title */}
-                <h3 className="text-base font-bold text-gray-900 leading-tight mb-3 min-h-[3rem] flex items-center">
+                <h3 className="text-base font-bold text-gray-900 dark:text-gray-100 leading-tight mb-3 min-h-[3rem] flex items-center">
                   {exp.title}
                 </h3>
 
@@ -174,8 +174,8 @@ export default function Experience() {
                 </div>
 
                 {/* Year and Link */}
-                <div className="mt-auto pt-4 border-t border-gray-100 w-full flex items-center justify-between">
-                  <span className="text-sm font-semibold text-gray-500">
+                <div className="mt-auto pt-4 border-t border-gray-100 dark:border-gray-700 w-full flex items-center justify-between">
+                  <span className="text-sm font-semibold text-gray-500 dark:text-gray-400">
                     {exp.year}
                   </span>
                   <div className="flex items-center gap-1.5 text-indigo-600 group-hover:text-indigo-700 transition-colors">
@@ -199,7 +199,7 @@ export default function Experience() {
           transition={{ delay: 0.3, duration: 0.6 }}
           className="mt-16 text-center"
         >
-          <p className="text-gray-600 text-sm md:text-base mb-4">
+          <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base mb-4">
             Want to see more achievements and project work?
           </p>
           <a

@@ -64,16 +64,20 @@ export default function Projects() {
   };
 
   return (
-    <section id="projects" className="py-20 bg-gray-50 px-6">
-      <div className="max-w-7xl mx-auto">
+    <section id="projects" className="py-28 bg-gradient-to-b from-white via-indigo-50/30 to-white dark:from-gray-900 dark:via-indigo-950/20 dark:to-gray-900 px-6 transition-colors duration-300 relative overflow-hidden">
+      {/* Background Decoration */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-indigo-200/30 dark:from-indigo-900/20 to-purple-200/30 dark:to-purple-900/20 rounded-full blur-3xl -z-0" />
+      <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-blue-200/30 dark:from-blue-900/20 to-indigo-200/30 dark:to-indigo-900/20 rounded-full blur-3xl -z-0" />
+      
+      <div className="max-w-7xl mx-auto relative z-10">
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
-          className="text-4xl md:text-5xl font-extrabold mb-12 text-center text-gray-900"
+          className="text-4xl md:text-5xl font-extrabold mb-12 text-center"
         >
-          Projects
+          <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 dark:from-blue-400 dark:via-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">Projects</span>
         </motion.h2>
 
         <motion.div
@@ -89,7 +93,7 @@ export default function Projects() {
               href={project.liveLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white rounded-xl shadow-md overflow-hidden flex flex-col h-full cursor-pointer transform transition duration-300 hover:scale-105 hover:shadow-lg"
+              className="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden flex flex-col h-full cursor-pointer transform transition duration-300 hover:scale-105 hover:shadow-lg"
               variants={cardVariants}
             >
               <img
@@ -99,20 +103,20 @@ export default function Projects() {
               />
               <div className="p-4 flex flex-col justify-between flex-1">
                 <div>
-                  <h3 className="text-lg md:text-xl font-bold text-gray-800 mb-1">
+                  <h3 className="text-lg md:text-xl font-bold text-gray-800 dark:text-gray-200 mb-1">
                     {project.title}
                   </h3>
                   <div className="flex flex-wrap gap-1 mb-1">
                     {project.tech.map((tech, tid) => (
                       <span
                         key={tid}
-                        className="bg-indigo-100 text-indigo-700 text-xs md:text-xs font-medium px-2 py-0.5 rounded-full"
+                        className="bg-indigo-100 dark:bg-indigo-900/50 text-indigo-700 dark:text-indigo-300 text-xs md:text-xs font-medium px-2 py-0.5 rounded-full"
                       >
                         {tech}
                       </span>
                     ))}
                   </div>
-                  <p className="text-gray-700 text-sm md:text-sm mb-3">
+                  <p className="text-gray-700 dark:text-gray-300 text-sm md:text-sm mb-3">
                     {project.description}
                   </p>
                 </div>
