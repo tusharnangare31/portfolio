@@ -1,15 +1,14 @@
-// src/components/Hero.jsx
+// src/components/Hero.jsx - PROFESSIONAL IMPROVEMENTS
 import React, { useRef, useEffect } from "react";
 import { Typewriter } from "react-simple-typewriter";
 import Tilt from "react-parallax-tilt";
 import Lottie from "lottie-react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
-import { FaLinkedin, FaGithub, FaEnvelope } from "react-icons/fa";
+import { FaLinkedin, FaGithub, FaEnvelope, FaArrowDown } from "react-icons/fa";
 import { SiLeetcode } from "react-icons/si";
 import heroAnimation from "../assets/hero.json";
 
-// -- CONSTANTS --
 const ANIMATION_PHRASES = [
   "Final-Year IT Student",
   "Full-Stack Developer",
@@ -21,39 +20,41 @@ const ANIMATION_PHRASES = [
 
 export default function Hero() {
   const controls = useAnimation();
-  const { ref, inView } = useInView({ threshold: 0.2 }); // Lower threshold for mobile triggering
+  const { ref, inView } = useInView({ threshold: 0.2 });
 
   useEffect(() => {
     if (inView) controls.start("visible");
     else controls.start("hidden");
   }, [controls, inView]);
 
-  // -- ANIMATION VARIANTS --
   const textVariants = {
-    hidden: { opacity: 0, y: 20 }, // Changed to y for safer mobile animation
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: "easeOut" } },
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } },
   };
 
   const animationVariants = {
     hidden: { opacity: 0, scale: 0.9 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.9, ease: "easeOut" } },
+    visible: { opacity: 1, scale: 1, transition: { duration: 1, ease: [0.22, 1, 0.36, 1] } },
   };
 
   const socialLinks = [
-    { icon: <FaLinkedin />, link: "https://www.linkedin.com/in/tusharnangare31/", color: "#0A66C2" },
-    { icon: <FaGithub />, link: "https://github.com/tusharnangare31", color: "#171515" },
-    { icon: <FaEnvelope />, link: "mailto:tusharnangare311003@gmail.com", color: "#D44638" },
-    { icon: <SiLeetcode />, link: "https://leetcode.com/u/tusharnangare311003/", color: "#FFA116" },
+    { icon: <FaLinkedin />, link: "https://www.linkedin.com/in/tusharnangare31/", color: "#0A66C2", label: "LinkedIn" },
+    { icon: <FaGithub />, link: "https://github.com/tusharnangare31", color: "#171515", label: "GitHub" },
+    { icon: <FaEnvelope />, link: "mailto:tusharnangare311003@gmail.com", color: "#D44638", label: "Email" },
+    { icon: <SiLeetcode />, link: "https://leetcode.com/u/tusharnangare311003/", color: "#FFA116", label: "LeetCode" },
   ];
+
+  const scrollToAbout = () => {
+    const aboutSection = document.getElementById("about");
+    if (aboutSection) aboutSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   return (
     <section
       id="hero"
       ref={ref}
-      // Layout: Vertical on mobile (flex-col), Horizontal on Desktop (md:flex-row)
       className="relative min-h-screen flex flex-col md:flex-row items-center justify-center px-6 md:px-16 lg:px-32 py-24 md:py-20 overflow-hidden bg-gradient-to-br from-gray-50 via-blue-50/30 to-gray-100"
     >
-      {/* Particle background canvas */}
       <ParticleNetwork
         color="#3b82f6"
         mousePointColor="#f59e0b"
@@ -65,28 +66,39 @@ export default function Hero() {
         className="absolute inset-0 z-0 pointer-events-none"
       />
 
-      {/* --- TEXT CONTENT SECTION --- */}
+      {/* Decorative orbs */}
+      <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-blue-400/20 to-indigo-500/20 rounded-full blur-3xl animate-pulse" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-tr from-indigo-400/20 to-purple-500/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: "1s" }} />
+
       <motion.div
-        // Mobile: Centered text, Full Width
-        // Desktop: Left-aligned text, Half Width, Padding Right
         className="w-full md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left z-10 md:pr-12"
         initial="hidden"
         animate={controls}
         variants={textVariants}
       >
-        {/* Mobile: Smaller Header / Desktop: Large Header */}
-        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 pb-2">
-          Tushar Nangare
+        {/* Status badge with pulse */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
+          className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-sm border border-blue-200 px-4 py-2 rounded-full text-sm font-medium text-blue-700 shadow-sm mb-6"
+        >
+          <span className="relative flex h-2 w-2">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+          </span>
+          <span>Available for opportunities</span>
+        </motion.div>
+
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-2">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700">
+            Tushar Nangare
+          </span>
         </h1>
 
-        <p className="mt-4 text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed max-w-lg md:max-w-xl">
-          I am a passionate IT student and developer exploring modern web and mobile technologies to build intuitive and scalable solutions.
-        </p>
-
-        {/* Typewriter: Flex row on desktop, centered column/row on mobile */}
-        <p className="mt-5 text-lg sm:text-xl md:text-2xl text-gray-800 font-medium h-12 md:h-10 flex flex-col md:flex-row items-center justify-center md:justify-start">
-          <span className="mb-1 md:mb-0 md:mr-2 text-gray-600">I am a</span>
-          <span className="text-blue-600 font-bold">
+        <div className="mt-6 mb-6 h-16 flex flex-col md:flex-row items-center justify-center md:justify-start gap-2">
+          <span className="text-lg md:text-xl text-gray-600 font-medium">I am a</span>
+          <span className="text-xl md:text-2xl text-blue-600 font-bold min-h-[2rem] flex items-center">
             <Typewriter
               words={ANIMATION_PHRASES}
               loop={0}
@@ -97,52 +109,84 @@ export default function Hero() {
               delaySpeed={1500}
             />
           </span>
+        </div>
+
+        <p className="text-base sm:text-lg md:text-xl text-gray-700 leading-relaxed max-w-lg md:max-w-xl mb-8">
+          A passionate IT student and developer exploring modern web and mobile technologies 
+          to build <span className="font-semibold text-gray-900">intuitive</span> and 
+          <span className="font-semibold text-gray-900"> scalable</span> solutions that make a difference.
         </p>
 
-        {/* CTA Button */}
-        <div className="mt-8 md:mt-10 flex justify-center md:justify-start w-full">
+        <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mb-10">
           <a
             href="#about"
-            className="px-8 py-3 rounded-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold shadow-lg hover:shadow-blue-500/40 hover:scale-105 transition-all duration-300 text-sm md:text-base"
+            className="group relative px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold shadow-lg hover:shadow-blue-500/50 transition-all duration-300 overflow-hidden"
           >
-            Learn More About Me
+            <span className="relative z-10 flex items-center justify-center gap-2">
+              Explore My Work
+              <FaArrowDown className="group-hover:translate-y-1 transition-transform duration-300" />
+            </span>
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-indigo-700 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+          </a>
+          
+          <a
+            href="#contact"
+            className="px-8 py-4 rounded-xl bg-white border-2 border-gray-300 text-gray-800 font-semibold hover:border-blue-500 hover:text-blue-600 hover:shadow-lg transition-all duration-300"
+          >
+            Get In Touch
           </a>
         </div>
 
-        {/* Social Icons */}
-        <div className="mt-8 flex gap-5 justify-center md:justify-start flex-wrap">
+        <div className="flex gap-4 justify-center md:justify-start flex-wrap">
           {socialLinks.map((item, idx) => (
-            <a
+            <motion.a
               key={idx}
               href={item.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center rounded-full p-3 sm:p-4 text-xl md:text-2xl shadow-md hover:shadow-lg hover:scale-110 transition-all duration-300 bg-white"
+              aria-label={item.label}
+              whileHover={{ scale: 1.1, y: -4 }}
+              whileTap={{ scale: 0.95 }}
+              className="group relative flex items-center justify-center rounded-xl p-4 text-2xl shadow-md hover:shadow-xl transition-all duration-300 bg-white border border-gray-100"
               style={{ color: item.color }}
             >
               {item.icon}
-            </a>
+              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                {item.label}
+              </span>
+            </motion.a>
           ))}
         </div>
+
+        <motion.button
+          onClick={scrollToAbout}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 1 }}
+          className="hidden md:flex absolute bottom-10 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-gray-500 hover:text-blue-600 transition-colors cursor-pointer group"
+          aria-label="Scroll to about section"
+        >
+          <span className="text-sm font-medium">Scroll to explore</span>
+          <div className="w-6 h-10 border-2 border-gray-400 rounded-full flex items-start justify-center p-1 group-hover:border-blue-600 transition-colors">
+            <motion.div
+              animate={{ y: [0, 12, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+              className="w-1.5 h-1.5 bg-gray-400 rounded-full group-hover:bg-blue-600"
+            />
+          </div>
+        </motion.button>
       </motion.div>
 
-      {/* --- ILLUSTRATION SECTION --- */}
       <motion.div
         className="w-full md:w-1/2 mt-12 md:mt-0 flex justify-center md:justify-end z-10"
         initial="hidden"
         animate={controls}
         variants={animationVariants}
       >
-        {/* MOBILE VIEW: Simple Div (No Tilt) 
-            Hidden on Desktop (md:hidden)
-        */}
         <div className="block md:hidden w-[18rem] h-[18rem] sm:w-[24rem] sm:h-[24rem]">
-           <Lottie animationData={heroAnimation} loop={true} className="w-full h-full drop-shadow-xl" />
+          <Lottie animationData={heroAnimation} loop={true} className="w-full h-full drop-shadow-2xl" />
         </div>
 
-        {/* DESKTOP VIEW: Tilt Enabled 
-            Hidden on Mobile (hidden md:block)
-        */}
         <div className="hidden md:block">
           <Tilt
             className="w-[30rem] h-[30rem] lg:w-[35rem] lg:h-[35rem] rounded-3xl bg-white/0"
@@ -162,11 +206,6 @@ export default function Hero() {
     </section>
   );
 }
-
-/* ------------------------------------------------------------------
-   ParticleNetwork Component
-   (Handles both mouse and touch subtly, fits container)
-   ------------------------------------------------------------------ */
 
 function ParticleNetwork({
   color = "#3b82f6",
@@ -200,7 +239,7 @@ function ParticleNetwork({
         y: rand(0, logicalH),
         baseVx: Math.cos(angle) * v,
         baseVy: Math.sin(angle) * v,
-        vx: 0, 
+        vx: 0,
         vy: 0,
         size: particleSize * rand(0.8, 1.5),
       };
@@ -221,12 +260,9 @@ function ParticleNetwork({
       hostRectRef.current.width = logicalW;
       hostRectRef.current.height = logicalH;
 
-      // Adjust particle count based on screen size for performance
       const isSmallScreen = logicalW < 768;
-      const count = isSmallScreen 
-        ? Math.floor(particleCount * 0.6) 
-        : Math.max(10, Math.floor(particleCount));
-      
+      const count = isSmallScreen ? Math.floor(particleCount * 0.6) : Math.max(10, Math.floor(particleCount));
+
       const particles = [];
       for (let i = 0; i < count; i++) {
         particles.push(createParticle(logicalW, logicalH));
@@ -245,10 +281,9 @@ function ParticleNetwork({
     function onMoveFromHost(e) {
       const host = canvas.parentElement || document.body;
       const rect = host.getBoundingClientRect();
-      // Handle both mouse and touch coordinates
       const clientX = e.touches ? e.touches[0].clientX : e.clientX;
       const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-      
+
       mouseRef.current.x = clientX - rect.left;
       mouseRef.current.y = clientY - rect.top;
       mouseRef.current.active = true;
@@ -350,7 +385,7 @@ function ParticleNetwork({
         ctx.fillStyle = mousePointColor;
         ctx.arc(mouse.x, mouse.y, particleSize * 3, 0, Math.PI * 2);
         ctx.fill();
-        
+
         ctx.beginPath();
         ctx.strokeStyle = hexWithAlpha(mousePointColor, 0.3);
         ctx.lineWidth = 2;
@@ -363,9 +398,9 @@ function ParticleNetwork({
 
     const host = canvas.parentElement || document.body;
     host.addEventListener("mousemove", onMoveFromHost);
-    host.addEventListener("touchmove", onMoveFromHost); // Add touch support
+    host.addEventListener("touchmove", onMoveFromHost);
     host.addEventListener("mouseleave", onLeaveFromHost);
-    host.addEventListener("touchend", onLeaveFromHost); // Add touch end support
+    host.addEventListener("touchend", onLeaveFromHost);
     window.addEventListener("resize", resize);
 
     resize();
