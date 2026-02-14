@@ -43,20 +43,20 @@ export default function LoadingBar() {
   }, [progress]);
 
   useEffect(() => {
-    // Simulate loading progress
+    // Simulate loading progress with smoother, slower transitions
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
           setShowSuccess(true);
-          setTimeout(() => setIsComplete(true), 1000);
+          setTimeout(() => setIsComplete(true), 1500);
           return 100;
         }
-        // Faster progress at the start, slower near the end
-        const increment = prev < 60 ? Math.random() * 15 : Math.random() * 5;
+        // Smoother, slower progress throughout
+        const increment = prev < 60 ? Math.random() * 8 : Math.random() * 3;
         return Math.min(prev + increment, 100);
       });
-    }, 100);
+    }, 200);
 
     return () => clearInterval(interval);
   }, []);
@@ -91,8 +91,8 @@ export default function LoadingBar() {
         <motion.div
           initial={{ opacity: 1 }}
           exit={{ opacity: 0, scale: 1.1 }}
-          transition={{ duration: 0.6, ease: "easeInOut" }}
-          className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-gradient-to-br from-white via-blue-50 to-purple-50 dark:from-gray-950 dark:via-blue-950 dark:to-purple-950 transition-colors duration-300 overflow-hidden"
+          transition={{ duration: 1, ease: "easeInOut" }}
+          className="fixed inset-0 z-[9999] flex flex-col items-center justify-between bg-gradient-to-br from-white via-blue-50 to-purple-50 dark:from-gray-950 dark:via-blue-950 dark:to-purple-950 transition-colors duration-300 overflow-hidden py-12"
         >
           {/* Animated Gradient Orbs */}
           <motion.div
@@ -162,67 +162,14 @@ export default function LoadingBar() {
             />
           ))}
 
-          {/* Pulsing Wave Rings */}
-          {waveRings.map((ring) => (
-            <motion.div
-              key={ring.id}
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{
-                scale: [0.8, 1.5, 2],
-                opacity: [0.5, 0.3, 0],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                delay: ring.delay,
-                ease: "easeOut",
-              }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 border-4 border-blue-500/30 dark:border-blue-400/30 rounded-full"
-            />
-          ))}
-
-          {/* Rotating Tech Icons */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-            {techIcons.map((tech, index) => {
-              const angle = (index * 360) / techIcons.length;
-              const radius = 180;
-              const x = Math.cos((angle * Math.PI) / 180) * radius;
-              const y = Math.sin((angle * Math.PI) / 180) * radius;
-
-              return (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{
-                    opacity: progress > index * 12 ? [0.3, 0.7, 0.3] : 0,
-                    scale: progress > index * 12 ? [0.8, 1, 0.8] : 0,
-                    rotate: 360,
-                  }}
-                  transition={{
-                    opacity: { duration: 2, repeat: Infinity },
-                    scale: { duration: 2, repeat: Infinity },
-                    rotate: { duration: 20, repeat: Infinity, ease: "linear" },
-                  }}
-                  className={`absolute ${tech.color} bg-white dark:bg-gray-800 p-3 rounded-xl shadow-lg backdrop-blur-sm border border-gray-200 dark:border-gray-700`}
-                  style={{
-                    left: `${x}px`,
-                    top: `${y}px`,
-                  }}
-                >
-                  {tech.icon}
-                </motion.div>
-              );
-            })}
-          </div>
-
-          {/* Main Content Container */}
-          <div className="relative z-10 flex flex-col items-center">
+          {/* Top Section - Logo/Name */}
+          <div className="relative z-10 flex flex-col items-center pt-8">
             {/* Logo/Name with Enhanced Shimmer Effect */}
             <motion.div
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="mb-8 relative"
+              transition={{ duration: 0.8 }}
+              className="relative"
             >
               <motion.div
                 animate={{ x: ["-100%", "200%"] }}
@@ -232,14 +179,63 @@ export default function LoadingBar() {
               <h1 className="text-5xl md:text-7xl font-extrabold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 dark:from-blue-400 dark:via-indigo-400 dark:to-purple-400 bg-clip-text text-transparent relative drop-shadow-2xl">
                 Tushar Nangare
               </h1>
-              
-              {/* Animated Underline */}
-              <motion.div
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: progress / 100 }}
-                className="h-1 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 dark:from-blue-400 dark:via-indigo-400 dark:to-purple-400 rounded-full mt-2 origin-left"
-              />
             </motion.div>
+          </div>
+
+          {/* Center Section - Rocket Animation */}
+          <div className="relative z-10 flex flex-col items-center justify-center">
+            {/* Pulsing Wave Rings */}
+            {waveRings.map((ring) => (
+              <motion.div
+                key={ring.id}
+                initial={{ scale: 0.8, opacity: 0 }}
+                animate={{
+                  scale: [0.8, 1.5, 2],
+                  opacity: [0.5, 0.3, 0],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  delay: ring.delay,
+                  ease: "easeOut",
+                }}
+                className="absolute w-64 h-64 border-4 border-blue-500/30 dark:border-blue-400/30 rounded-full"
+              />
+            ))}
+
+            {/* Rotating Tech Icons */}
+            <div className="absolute">
+              {techIcons.map((tech, index) => {
+                const angle = (index * 360) / techIcons.length;
+                const radius = 180;
+                const x = Math.cos((angle * Math.PI) / 180) * radius;
+                const y = Math.sin((angle * Math.PI) / 180) * radius;
+
+                return (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, scale: 0 }}
+                    animate={{
+                      opacity: progress > index * 8 ? [0.3, 0.7, 0.3] : 0,
+                      scale: progress > index * 8 ? [0.8, 1, 0.8] : 0,
+                      rotate: 360,
+                    }}
+                    transition={{
+                      opacity: { duration: 2, repeat: Infinity },
+                      scale: { duration: 2, repeat: Infinity },
+                      rotate: { duration: 20, repeat: Infinity, ease: "linear" },
+                    }}
+                    className={`absolute ${tech.color} bg-white dark:bg-gray-800 p-3 rounded-xl shadow-lg backdrop-blur-sm border border-gray-200 dark:border-gray-700`}
+                    style={{
+                      left: `${x}px`,
+                      top: `${y}px`,
+                    }}
+                  >
+                    {tech.icon}
+                  </motion.div>
+                );
+              })}
+            </div>
 
             {/* Rocket Icon Animation */}
             <motion.div
@@ -250,7 +246,6 @@ export default function LoadingBar() {
                 rotate: showSuccess ? 45 : 0,
               }}
               transition={{ duration: 0.8, type: "spring" }}
-              className="mb-6"
             >
               <motion.div
                 animate={{ 
@@ -272,7 +267,7 @@ export default function LoadingBar() {
                   animate={{ scale: 1, rotate: 0 }}
                   exit={{ scale: 0 }}
                   transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                  className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center shadow-2xl"
+                  className="absolute w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-full flex items-center justify-center shadow-2xl"
                 >
                   <svg
                     className="w-8 h-8 text-white"
@@ -293,113 +288,6 @@ export default function LoadingBar() {
                 </motion.div>
               )}
             </AnimatePresence>
-
-            {/* Progress Bar Container with Glow */}
-            <div className="relative w-64 md:w-80 mb-6">
-              {/* Glow Effect */}
-              {progress > 0 && (
-                <motion.div
-                  animate={{ opacity: [0.5, 1, 0.5] }}
-                  transition={{ duration: 1.5, repeat: Infinity }}
-                  className="absolute inset-0 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 blur-xl rounded-full"
-                  style={{ width: `${progress}%` }}
-                />
-              )}
-              
-              <div className="relative w-full h-3 bg-gray-200/50 dark:bg-gray-800/50 rounded-full overflow-hidden shadow-inner backdrop-blur-sm border border-gray-300/50 dark:border-gray-700/50">
-                {/* Animated Background Pattern */}
-                <motion.div
-                  animate={{ x: ["0%", "100%"] }}
-                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
-                  style={{ width: "50%" }}
-                />
-                
-                {/* Progress Fill */}
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: `${progress}%` }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="relative h-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 dark:from-blue-500 dark:via-indigo-500 dark:to-purple-500 rounded-full shadow-lg overflow-hidden"
-                >
-                  {/* Moving Shine Effect */}
-                  <motion.div
-                    animate={{ x: ["-100%", "200%"] }}
-                    transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
-                    className="absolute inset-0 w-1/2 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12"
-                  />
-                  
-                  {/* Ripple Effect */}
-                  <motion.div
-                    animate={{ 
-                      scale: [1, 1.5],
-                      opacity: [0.5, 0],
-                    }}
-                    transition={{ duration: 1, repeat: Infinity }}
-                    className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full"
-                  />
-                </motion.div>
-              </div>
-            </div>
-
-            {/* Progress Percentage with Glitch Effect */}
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ 
-                opacity: 1,
-                y: progress === 100 ? [-2, 2, -2] : 0,
-              }}
-              transition={{ 
-                opacity: { delay: 0.3 },
-                y: { duration: 0.1, repeat: progress === 100 ? 3 : 0 },
-              }}
-              className="text-2xl font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 dark:from-blue-400 dark:via-indigo-400 dark:to-purple-400 bg-clip-text text-transparent"
-            >
-              {Math.round(progress)}%
-            </motion.p>
-
-            {/* Loading Text with Typing Animation */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: showSuccess ? 0 : 1 }}
-              transition={{ delay: 0.5 }}
-              className="mt-4 flex items-center gap-2 min-h-[2rem]"
-            >
-              <FaCode className="text-blue-600 dark:text-blue-400 animate-pulse" />
-              <AnimatePresence mode="wait">
-                <motion.span
-                  key={currentMessage}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.3 }}
-                  className="text-sm font-semibold text-gray-700 dark:text-gray-300"
-                >
-                  {loadingMessages[currentMessage]}
-                </motion.span>
-              </AnimatePresence>
-              {progress < 100 && (
-                <div className="flex gap-1">
-                  {[0, 0.2, 0.4].map((delay, i) => (
-                    <motion.span
-                      key={i}
-                      animate={{ 
-                        opacity: [0.3, 1, 0.3],
-                        y: [0, -4, 0],
-                      }}
-                      transition={{ 
-                        duration: 1.5, 
-                        repeat: Infinity, 
-                        delay,
-                      }}
-                      className="text-sm text-blue-600 dark:text-blue-400 font-bold"
-                    >
-                      .
-                    </motion.span>
-                  ))}
-                </div>
-              )}
-            </motion.div>
 
             {/* Enhanced Particle Burst on Completion */}
             <AnimatePresence>
@@ -468,6 +356,116 @@ export default function LoadingBar() {
                 </>
               )}
             </AnimatePresence>
+          </div>
+
+          {/* Bottom Section - Progress Bar */}
+          <div className="relative z-10 flex flex-col items-center w-full px-4 pb-8">
+            {/* Progress Bar Container with Glow */}
+            <div className="relative w-full max-w-md mb-4">
+              {/* Glow Effect */}
+              {progress > 0 && (
+                <motion.div
+                  animate={{ opacity: [0.5, 1, 0.5] }}
+                  transition={{ duration: 1.5, repeat: Infinity }}
+                  className="absolute inset-0 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 blur-xl rounded-full"
+                  style={{ width: `${progress}%` }}
+                />
+              )}
+              
+              <div className="relative w-full h-4 bg-gray-200/50 dark:bg-gray-800/50 rounded-full overflow-hidden shadow-inner backdrop-blur-sm border border-gray-300/50 dark:border-gray-700/50">
+                {/* Animated Background Pattern */}
+                <motion.div
+                  animate={{ x: ["0%", "100%"] }}
+                  transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
+                  style={{ width: "50%" }}
+                />
+                
+                {/* Progress Fill */}
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: `${progress}%` }}
+                  transition={{ duration: 0.5, ease: "easeOut" }}
+                  className="relative h-full bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 dark:from-blue-500 dark:via-indigo-500 dark:to-purple-500 rounded-full shadow-lg overflow-hidden"
+                >
+                  {/* Moving Shine Effect */}
+                  <motion.div
+                    animate={{ x: ["-100%", "200%"] }}
+                    transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                    className="absolute inset-0 w-1/2 bg-gradient-to-r from-transparent via-white/40 to-transparent skew-x-12"
+                  />
+                  
+                  {/* Ripple Effect */}
+                  <motion.div
+                    animate={{ 
+                      scale: [1, 1.5],
+                      opacity: [0.5, 0],
+                    }}
+                    transition={{ duration: 1, repeat: Infinity }}
+                    className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full"
+                  />
+                </motion.div>
+              </div>
+            </div>
+
+            {/* Progress Percentage with Glitch Effect */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ 
+                opacity: 1,
+                y: progress === 100 ? [-2, 2, -2] : 0,
+              }}
+              transition={{ 
+                opacity: { delay: 0.3 },
+                y: { duration: 0.1, repeat: progress === 100 ? 3 : 0 },
+              }}
+              className="text-3xl font-bold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 dark:from-blue-400 dark:via-indigo-400 dark:to-purple-400 bg-clip-text text-transparent mb-3"
+            >
+              {Math.round(progress)}%
+            </motion.p>
+
+            {/* Loading Text with Typing Animation */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: showSuccess ? 0 : 1 }}
+              transition={{ delay: 0.5 }}
+              className="flex items-center gap-2 min-h-[2rem]"
+            >
+              <FaCode className="text-blue-600 dark:text-blue-400 animate-pulse" />
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={currentMessage}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  transition={{ duration: 0.4 }}
+                  className="text-base font-semibold text-gray-700 dark:text-gray-300"
+                >
+                  {loadingMessages[currentMessage]}
+                </motion.span>
+              </AnimatePresence>
+              {progress < 100 && (
+                <div className="flex gap-1">
+                  {[0, 0.2, 0.4].map((delay, i) => (
+                    <motion.span
+                      key={i}
+                      animate={{ 
+                        opacity: [0.3, 1, 0.3],
+                        y: [0, -4, 0],
+                      }}
+                      transition={{ 
+                        duration: 1.5, 
+                        repeat: Infinity, 
+                        delay,
+                      }}
+                      className="text-base text-blue-600 dark:text-blue-400 font-bold"
+                    >
+                      .
+                    </motion.span>
+                  ))}
+                </div>
+              )}
+            </motion.div>
           </div>
 
           {/* Enhanced Corner Accents */}
