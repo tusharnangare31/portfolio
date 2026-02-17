@@ -58,7 +58,7 @@ export default function Hero() {
       <ParticleNetwork
         color="#3b82f6"
         mousePointColor="#f59e0b"
-        particleCount={80}
+        particleCount={150}
         maxDistance={120}
         particleSize={1.5}
         speed={0.4}
